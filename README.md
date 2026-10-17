@@ -2,7 +2,7 @@
 
 《俺たちに翼はない》（Navel，2009）的 iPhone / iPad / Apple Vision Pro / Mac 原生移植。
 
-> **开发与验收中，尚未正式发布。** iPhone、iPad、Vision Pro 均已实机确认中文正文、声音与推进；iPad 普通存读档及修复后的快速读取已通过。Vision Pro 原生大按钮、回想打开／关闭及章节文字已通过实机复测。Mac 已验证中文开篇与发布构建的目录选择。两段片头自动回归均自然播放结束，iPhone 片头音乐已确认正常，实机视频其余项目和完整路线尚未完成验收。下方发布安装步骤是预定流程，当前没有已发布的 Release 安装包。
+> **v0.1.0 预发布。** iPhone、iPad、Vision Pro 已实机确认中文正文、声音与推进；iPad 普通／快速存读档、Vision Pro 普通存读档、原生大按钮、回想切换和章节文字均已通过。iPhone／Vision Pro 第一段片头、iPad 第二段片头的连续画面、音乐和结束返回已通过实机确认。Mac 已验证中文开篇与发布构建的目录选择。完整角色路线尚未逐一通关，部分视觉效果仍有逆向开放问题，详见[验证记录与覆盖边界](docs/VALIDATION.md)。安装包见 [v0.1.0 Release](https://github.com/galhack/ore/releases/tag/v0.1.0)。
 
 本项目从零重写了游戏所用的 Lucifen 引擎（脚本虚拟机、图层合成、过渡与特效、文本、界面、音频、
 片头动画、存档），在 Apple 设备上原生运行，并支持「中文三号补丁」汉化。
