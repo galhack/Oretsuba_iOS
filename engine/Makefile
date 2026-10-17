@@ -45,7 +45,7 @@ $(BUILD)/obj/host/stb_write.o: tests/stb_write_impl.cpp
 $(BUILD)/orehost: host/main.mm $(BUILD)/libore.a $(BUILD)/obj/host/stb_write.o
 	$(CXX) $(CXXFLAGS) -fobjc-arc host/main.mm $(BUILD)/obj/host/stb_write.o $(BUILD)/libore.a $(FRAMEWORKS) -o $@
 
-tests: $(BUILD)/elg_all $(BUILD)/vm_smoke $(BUILD)/movie_test $(BUILD)/movie_flow $(BUILD)/save_roundtrip $(BUILD)/quick_save $(BUILD)/command_input $(BUILD)/image_blend
+tests: $(BUILD)/elg_all $(BUILD)/vm_smoke $(BUILD)/movie_test $(BUILD)/movie_flow $(BUILD)/save_roundtrip $(BUILD)/quick_save $(BUILD)/command_input $(BUILD)/image_blend $(BUILD)/native_coverage
 
 $(BUILD)/elg_all: tests/elg_all.cpp $(BUILD)/libore.a $(BUILD)/obj/host/stb_write.o
 	$(CXX) $(CXXFLAGS) $^ $(FRAMEWORKS) -o $@
@@ -69,6 +69,9 @@ $(BUILD)/command_input: tests/command_input.cpp $(BUILD)/libore.a
 	$(CXX) $(CXXFLAGS) $^ $(FRAMEWORKS) -o $@
 
 $(BUILD)/image_blend: tests/image_blend.cpp $(BUILD)/libore.a
+	$(CXX) $(CXXFLAGS) $^ $(FRAMEWORKS) -o $@
+
+$(BUILD)/native_coverage: tests/native_coverage.cpp $(BUILD)/libore.a
 	$(CXX) $(CXXFLAGS) $^ $(FRAMEWORKS) -o $@
 
 clean:

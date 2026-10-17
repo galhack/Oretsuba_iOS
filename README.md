@@ -2,7 +2,7 @@
 
 《俺たちに翼はない》（Navel，2009）的 iPhone / iPad / Apple Vision Pro / Mac 原生移植。
 
-> **开发与验收中，尚未正式发布。** iPhone、iPad、Vision Pro 均已实机确认中文正文、声音与推进；iPad 普通存读档及修复后的快速读取已通过。Vision Pro 原生大按钮已通过，回想切换和章节跳转文字修复正在复测。Mac 已验证中文开篇与发布构建的目录选择。两段片头自动回归均自然播放结束，实机视频和完整路线尚未完成验收。下方发布安装步骤是预定流程，当前没有已发布的 Release 安装包。
+> **开发与验收中，尚未正式发布。** iPhone、iPad、Vision Pro 均已实机确认中文正文、声音与推进；iPad 普通存读档及修复后的快速读取已通过。Vision Pro 原生大按钮、回想打开／关闭及章节文字已通过实机复测。Mac 已验证中文开篇与发布构建的目录选择。两段片头自动回归均自然播放结束，iPhone 片头音乐已确认正常，实机视频其余项目和完整路线尚未完成验收。下方发布安装步骤是预定流程，当前没有已发布的 Release 安装包。
 
 本项目从零重写了游戏所用的 Lucifen 引擎（脚本虚拟机、图层合成、过渡与特效、文本、界面、音频、
 片头动画、存档），在 Apple 设备上原生运行，并支持「中文三号补丁」汉化。
@@ -122,6 +122,8 @@ make -C engine -j8 all tests
 build/host/save_roundtrip /path/to/SET_UP
 build/host/quick_save /path/to/SET_UP
 build/host/command_input /path/to/SET_UP
+build/host/native_coverage /path/to/SET_UP
+build/host/native_coverage /path/to/SET_UP /path/to/中文三号补丁
 build/host/image_blend
 build/host/movie_flow /path/to/SET_UP /path/to/中文三号补丁
 python3 tools/test_chinese_save.py /path/to/SET_UP /path/to/中文三号补丁

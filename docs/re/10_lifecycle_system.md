@@ -862,6 +862,8 @@ joy 3), 4 Enter (0x1C, numpad 0x9C), 5 Escape (0x01), 18 PageUp (0xC9),
 | N_222 | 0x41acd0 | (first, count) → idx / −1 | first triggered button in [first, first+count) (count 0 = to end) |
 | N_227 | 0x41ad80 | () → 0/1 | button 4 (decide/Enter) triggered |
 | N_228 | 0x41ada0 | () → 0/1 | button 5 (cancel/Esc) triggered |
+| N_22d | 0x41ae40 | () → 0/1 | button 4 (decide/Enter) held |
+| N_22e | 0x41ae60 | () → 0/1 | button 5 (cancel/Esc) held |
 | N_22f..N_232 | 0x41ae80.. | () → 0/1 | buttons 0..3 (Up/Down/Left/Right) **held** |
 
 Port: map touch/gamepad/keyboard to these 20 buttons; mouse clicks are separate

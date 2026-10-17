@@ -290,9 +290,11 @@ void register_input_natives(Engine &e) {
 	});
 	def(0x227, "decide_pressed", [button](Args &) { return button(4, true) ? 1 : 0; });
 	def(0x228, "cancel_pressed", [button](Args &) { return button(5, true) ? 1 : 0; });
+	def(0x22d, "decide_held", [button](Args &) { return button(4, false) ? 1 : 0; });
+	def(0x22e, "cancel_held", [button](Args &) { return button(5, false) ? 1 : 0; });
 	for (int k = 0; k < 4; ++k) {
 		def(0x229 + k, "dir_pressed", [button, k](Args &) { return button(k, true) ? 1 : 0; });
-		def(0x22d + k, "dir_held", [button, k](Args &) { return button(k, false) ? 1 : 0; });
+		def(0x22f + k, "dir_held", [button, k](Args &) { return button(k, false) ? 1 : 0; });
 	}
 	def(0x233, "skip_key_pressed", [skip_key](Args &) { return skip_key(true) ? 1 : 0; });
 	def(0x234, "skip_key_held", [skip_key](Args &) { return skip_key(false) ? 1 : 0; });

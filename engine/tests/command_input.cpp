@@ -62,8 +62,28 @@ int main(int argc, char **argv) {
         engine.game_command(7);
         engine.input.poll();
         check(first(engine.vm, args) == 14, "history button still opens history outside its screen");
+        engine.input.clear();
+        // The six held aliases are OK, Cancel, Up, Down, Left, Right.
+        // Check a later frame as well as release so these cannot be edge-only.
+        const int heldKeys[] = {0x0D, 0x1B, 0x26, 0x28, 0x25, 0x27};
+        ore::NativeFn held[6];
+        for (int i = 0; i < 6; ++i) {
+            held[i] = engine.vm.native(0x22d + i);
+            check(bool(held[i]), "all six held button aliases are registered");
+        }
+        for (int active = 0; active < 6; ++active) {
+            engine.input.on_key(heldKeys[active], true);
+            engine.input.poll();
+            engine.input.poll();
+            for (int i = 0; i < 6; ++i)
+                if (held[i]) check(held[i](engine.vm, args) == (i == active), "held alias selects the correct button");
+            engine.input.on_key(heldKeys[active], false);
+            engine.input.poll();
+            for (auto &fn : held)
+                if (fn) check(fn(engine.vm, args) == 0, "held aliases stop when the button is released");
+        }
     }
     std::filesystem::remove_all(saves);
-    if (ok) puts("command_input: native actions dispatch once without keyboard bindings");
+    if (ok) puts("command_input: native actions dispatch once and held aliases follow their buttons");
     return ok ? 0 : 1;
 }
