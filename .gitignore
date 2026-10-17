@@ -1,0 +1,53 @@
+# Game data: players must buy the game themselves
+data/
+中文三号补丁/
+ORE_TUBA_Chinese/
+extract/
+*.LPK
+*.lpk
+*.sob
+*.elg
+*.mpg
+# Credentials and private notes
+Claude.md
+CLAUDE.md
+.env
+*.env
+.*.csv
+*.csv
+.team
+app/.team
+# Build products and local tools
+.venv/
+build/
+DerivedData/
+*.xcodeproj/
+*.ipa
+.DS_Store
+__pycache__/
+
+# Local instructions, signing material and credentials
+[Aa][Gg][Ee][Nn][Tt][Ss].[Mm][Dd]
+.env.*
+*.pem
+*.key
+*.p12
+*.p8
+*.mobileprovision
+*.provisionprofile
+*.xcuserstate
+xcuserdata/
+# Original executables and extracted game assets
+*.exe
+*.EXE
+*.dll
+*.DLL
+*.SOB
+*.ELG
+*.ogg
+*.OGG
+*.mpeg
+*.MPG
+
+# Local implementation and device validation notes
+IMPLEMENTATION_PLAN.md

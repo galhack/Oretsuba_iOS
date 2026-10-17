@@ -1,0 +1,55 @@
+# XcodeGen project of the Apple port: one application target for iPhone, iPad
+# and Vision Pro, plus Mac Catalyst. Generate with tools/apple/gen_project.sh;
+# the .xcodeproj itself is not kept in git.
+name: Oretsuba
+options:
+  bundleIdPrefix: org.local
+  createIntermediateGroups: true
+  deploymentTarget:
+    iOS: "17.0"
+    visionOS: "1.0"
+    macOS: "14.0"
+settings:
+  base:
+    DEVELOPMENT_TEAM: ${ORE_TEAM}
+    CODE_SIGN_STYLE: Automatic
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.0"
+    CLANG_CXX_LANGUAGE_STANDARD: c++17
+    CLANG_ENABLE_OBJC_ARC: YES
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+    DEAD_CODE_STRIPPING: YES
+targets:
+  Oretsuba:
+    type: application
+    supportedDestinations: [iOS, visionOS, macCatalyst]
+    sources:
+      - path: Sources
+      - path: Resources
+        excludes:
+          - "Info.plist"
+      - path: ../engine/src
+        compilerFlags: ["-w"]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.local.oretsuba.${ORE_BUNDLE_SUFFIX}
+        PRODUCT_NAME: Oretsuba
+        INFOPLIST_FILE: Resources/Info.plist
+        SWIFT_OBJC_BRIDGING_HEADER: Sources/Native/Bridging.h
+        HEADER_SEARCH_PATHS:
+          - $(SRCROOT)/../engine/src
+          - $(SRCROOT)/../engine/third_party
+        GCC_OPTIMIZATION_LEVEL[config=Debug]: 2
+        TARGETED_DEVICE_FAMILY[sdk=iphone*]: "1,2"
+        TARGETED_DEVICE_FAMILY[sdk=macosx*]: "2,6"
+        TARGETED_DEVICE_FAMILY[sdk=xr*]: "7"
+        SUPPORTS_MACCATALYST: YES
+        DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER: NO
+        CODE_SIGN_IDENTITY[sdk=macosx*]: "-"
+        CODE_SIGN_STYLE[sdk=macosx*]: Manual
+        DEVELOPMENT_TEAM[sdk=macosx*]: ""
+        PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]: ""
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_APPICON_NAME[sdk=xr*]: AppIconVision
+        CODE_SIGN_ENTITLEMENTS: ""
