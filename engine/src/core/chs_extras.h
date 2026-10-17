@@ -2,7 +2,6 @@
 // ORE_TUBA_CHS.dll (ORE_TUBA_Chinese/patch/patch.cpp):
 //  * translator's notes ("TIPS"): when the shown message has a note, a TIPS
 //    button appears at (692,427); clicking it shows the note over the game;
-//  * the start-up thanks pictures shown before the game.
 // The data is read at run time from the player's own copy of the DLL.
 #pragma once
 
@@ -27,11 +26,6 @@ public:
 	bool load(const std::string &dll_path, Platform &platform);
 	bool loaded() const { return loaded_; }
 
-	// Start-up pictures; true while one is being shown.
-	bool splash_active() const { return splash_index_ < splash_.size(); }
-	void advance_splash() { ++splash_index_; }
-	const Image *splash() const { return splash_active() ? splash_[splash_index_].get() : nullptr; }
-
 	// Called with the record text (after the 3-byte header) of each message.
 	void on_message(const std::string &record_gbk);
 	// Pointer press in game coordinates; returns true when consumed.
@@ -45,8 +39,6 @@ private:
 	Platform *platform_ = nullptr;
 	bool loaded_ = false;
 	std::map<std::string, std::string> tips_;  // UTF-8 message → UTF-8 note
-	std::vector<std::unique_ptr<Image>> splash_;
-	size_t splash_index_ = 0;
 	std::unique_ptr<Image> button_;
 	std::string current_;   // note of the current message ("" = none)
 	bool panel_open_ = false;

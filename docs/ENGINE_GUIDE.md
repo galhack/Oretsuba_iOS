@@ -67,7 +67,7 @@ frame at 44100 Hz.
 
 Debug app builds accept `ORE_TEST_MOVIE=0` (first opening) or `1` (second opening)
 in the launch environment, together with `ORE_AUTOSTART=1`. This uses a new
-UUID-named temporary save directory, skips patch splash screens and enters the
+UUID-named temporary save directory and enters the
 original MoviePlay script. Launch again without the environment variables to
 resume ordinary play. The diagnostic C API and environment entry are excluded
 from Release builds; no movie or other game resource is bundled.

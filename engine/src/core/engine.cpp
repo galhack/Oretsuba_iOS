@@ -158,20 +158,10 @@ bool Engine::run_vm() {
 int Engine::frame(int64_t t) {
 	if (!booted_) return -1;
 	if (paused_) return 0;
-	if (chs && chs->splash_active()) {
-		input.poll();
-		if (input.mouse_pressed(0) || input.key_pressed(0x1C) || input.key_pressed(0x39)) chs->advance_splash();
-		if (const Image *img = chs->splash()) {
-			copy_rect(frame_, 0, 0, *img, img->rect());
-			++frame_serial_;
-		} else {
-			rendered_gen_ = 0;
-		}
-		return 0;
-	}
 	if (last_logic_ < 0) last_logic_ = t - 16;
 	int64_t elapsed = t - last_logic_;
-	if (elapsed < 15) return quit_requested ? 1 : 0;  // 60 Hz logic on faster displays
+	// Keep input pending until at least one logical step will run.
+	if (elapsed < 16) return quit_requested ? 1 : 0;  // 60 Hz logic on faster displays
 	int steps = int(elapsed / 16);
 	if (steps > 5) steps = 1, last_logic_ = t;
 	else last_logic_ += int64_t(steps) * 16667 / 1000;

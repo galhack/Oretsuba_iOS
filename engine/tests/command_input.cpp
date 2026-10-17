@@ -24,6 +24,17 @@ int main(int argc, char **argv) {
         auto check = [&](bool value, const char *message) {
             if (!value) { fprintf(stderr, "FAIL: %s\n", message); ok = false; }
         };
+        check(engine.frame(0) == 0, "engine starts its first logic tick");
+        auto steps = engine.vm.steps();
+        engine.input.on_command(3);
+        engine.input.on_key(0x1B, true);
+        engine.input.on_key(0x1B, false);
+        check(engine.frame(15) == 0 && engine.vm.steps() == steps,
+              "a frame before the next logic tick does not run scripts");
+        engine.input.poll();
+        check(engine.input.command_pressed(3), "toolbar action waits for a logic tick");
+        check(engine.input.key_pressed(0x01), "short key press waits for a logic tick");
+        engine.input.clear();
         // Disable all configurable shortcut keys: native actions must still work.
         for (int i = 0; i < 12; ++i) engine.set_opt8(0xeac + i, 0);
         // The script remaps logical shortcuts through G[868] before dispatch.

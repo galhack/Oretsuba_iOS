@@ -114,7 +114,6 @@ void ore_set_paused(OreEngine *e, int paused) {
 #if DEBUG
 int ore_debug_start_movie(OreEngine *e, int index) {
 	if (index < 0 || index > 1) return 0;
-	while (e->engine->chs && e->engine->chs->splash_active()) e->engine->chs->advance_splash();
 	e->engine->vm.mem().wr32(e->engine->vm.global_addr(912), uint32_t(index));
 	if (!e->engine->vm.start("MOVIEPLAY", &e->error)) return 0;
 	log_info("movie diagnostic: index %d, isolated saves", index);

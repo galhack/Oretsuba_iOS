@@ -164,11 +164,8 @@ bool ChsExtras::load(const std::string &dll_path, Platform &platform) {
 		while (read_str(k) && read_str(v)) tips_[k] = v;
 	}
 	if (pe_resource(d, "PNG", "TIPSPNG", res)) button_ = decode_png(res);
-	for (const char *n : {"SHOWATFIRST", "SHOWATFIRST2", "SHOWATFIRST3"})
-		if (pe_resource(d, "PNG", n, res))
-			if (auto img = decode_png(res)) splash_.push_back(std::move(img));
-	loaded_ = !tips_.empty() || !splash_.empty();
-	log_info("chinese patch extras: %zu notes, %zu start pictures", tips_.size(), splash_.size());
+	loaded_ = !tips_.empty();
+	log_info("chinese patch extras: %zu notes", tips_.size());
 	return loaded_;
 }
 

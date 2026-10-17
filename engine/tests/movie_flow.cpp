@@ -27,7 +27,6 @@ int main(int argc, char **argv) {
 		ore::Engine engine(platform, config);
 		std::string error;
 		if (!engine.boot(&error)) { fprintf(stderr, "boot: %s\n", error.c_str()); ok = false; break; }
-		while (engine.chs && engine.chs->splash_active()) engine.chs->advance_splash();
 		engine.vm.mem().wr32(engine.vm.global_addr(912), uint32_t(index));
 		if (!engine.vm.start("MOVIEPLAY", &error)) { fprintf(stderr, "%s\n", error.c_str()); ok = false; break; }
 		bool played = false, completed = false, returned = false;
